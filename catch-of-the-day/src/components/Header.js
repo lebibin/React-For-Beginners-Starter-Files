@@ -13,7 +13,7 @@ class Header extends React.Component {
           Day
         </h1>
         <h3 className="tagline">
-          <span>Fresh Daily</span>
+          <span>{this.props.tagLine}</span>
         </h3>
       </header>
     );
