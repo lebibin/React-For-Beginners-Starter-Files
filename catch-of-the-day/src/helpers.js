@@ -95,3 +95,17 @@ export function getFunName() {
 
   return `${rando(adjectives)}-${rando(adjectives)}-${rando(nouns)}`;
 }
+
+// https://stackoverflow.com/a/4648411
+export function renameProperty(object, oldName, newName) {
+  // Do nothing if the names are the same
+  if (oldName === newName) {
+    return object;
+  }
+  // Check for the old property name to avoid a ReferenceError in strict mode.
+  if (object.hasOwnProperty(oldName)) {
+    object[newName] = object[oldName];
+    delete object[oldName];
+  }
+  return object;
+}

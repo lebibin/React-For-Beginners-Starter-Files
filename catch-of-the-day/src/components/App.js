@@ -3,6 +3,8 @@ import Header from './Header';
 import Order from './Order';
 import Inventory from './Inventory';
 import sampleFishes from '../sample-fishes';
+import Fish from './Fish';
+import {renameProperty} from '../helpers';
 
 class App extends React.Component {
   state = {
@@ -17,13 +19,22 @@ class App extends React.Component {
     this.setState({fishes});
   };
   loadSampleFishes = () => {
-    this.setState({fishes: sampleFishes});
+    const transformedFishes = sampleFishes;
+    for (let properties of Object.values(transformedFishes)) {
+      renameProperty(properties, 'desc', 'description');
+    }
+    this.setState({fishes: transformedFishes});
   };
   render() {
     return (
       <div className="catch-of-the-day">
         <div className="menu">
           <Header tagLine={this.props.match.params.storeId} />
+          <ul className="fishes">
+            {Object.keys(this.state.fishes).map(key => (
+              <Fish key={key} fish={this.state.fishes[key]} />
+            ))}
+          </ul>
         </div>
         <Order />
         <Inventory
