@@ -25,6 +25,11 @@ class App extends React.Component {
     }
     this.setState({fishes: transformedFishes});
   };
+  addToOrder = key => {
+    const order = {...this.state.order};
+    order[key] = order[key] + 1 || 1;
+    this.setState({order});
+  };
   render() {
     return (
       <div className="catch-of-the-day">
@@ -32,7 +37,12 @@ class App extends React.Component {
           <Header tagLine={this.props.match.params.storeId} />
           <ul className="fishes">
             {Object.keys(this.state.fishes).map(key => (
-              <Fish key={key} fish={this.state.fishes[key]} />
+              <Fish
+                key={key}
+                fish={this.state.fishes[key]}
+                id={key}
+                addToOrder={this.addToOrder}
+              />
             ))}
           </ul>
         </div>
