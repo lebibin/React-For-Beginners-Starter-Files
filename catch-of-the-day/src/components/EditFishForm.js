@@ -8,9 +8,13 @@ class EditFishForm extends React.Component {
     };
     this.props.updateFish(updatedFish, this.props.id);
   };
+  deleteFish = e => {
+    e.preventDefault();
+    this.props.deleteFish(this.props.id);
+  };
   render() {
     return (
-      <form className="fish-edit" action="">
+      <form className="fish-edit" action="" onSubmit={this.deleteFish}>
         <input
           type="text"
           name="name"
@@ -44,6 +48,7 @@ class EditFishForm extends React.Component {
           onChange={this.handleChange}
           value={this.props.fish.image}
         />
+        <button type="submit">- Remove Fish</button>
       </form>
     );
   }

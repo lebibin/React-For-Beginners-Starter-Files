@@ -10,9 +10,9 @@ class Order extends React.Component {
       return (
         <li key={key}>
           <span className="count">
-            {count} lbs {fish.name}
+            {count} lbs {fish.name} - {formatPrice(count * fish.price)}
           </span>
-          <span>{formatPrice(count * fish.price)}</span>
+          <button onClick={() => this.props.removeOrder(key)}>&times;</button>
         </li>
       );
     } else {

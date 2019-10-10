@@ -46,6 +46,16 @@ class App extends React.Component {
     fishes[id] = fish;
     this.setState({fishes});
   };
+  removeOrder = id => {
+    const order = {...this.state.order};
+    delete order[id];
+    this.setState({order});
+  };
+  deleteFish = id => {
+    const fishes = {...this.state.fishes};
+    fishes[id] = null;
+    this.setState({fishes});
+  };
   loadSampleFishes = () => {
     const transformedFishes = sampleFishes;
     for (let properties of Object.values(transformedFishes)) {
@@ -74,9 +84,14 @@ class App extends React.Component {
             ))}
           </ul>
         </div>
-        <Order fishes={this.state.fishes} order={this.state.order} />
+        <Order
+          fishes={this.state.fishes}
+          order={this.state.order}
+          removeOrder={this.removeOrder}
+        />
         <Inventory
           addFish={this.addFish}
+          deleteFish={this.deleteFish}
           fishes={this.state.fishes}
           loadSampleFishes={this.loadSampleFishes}
           updateFish={this.updateFish}
