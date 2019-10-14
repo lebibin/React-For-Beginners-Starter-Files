@@ -1,6 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class AddFishForm extends React.Component {
+  static propTypes = {
+    addFish: PropTypes.func,
+  };
   name = React.createRef();
   price = React.createRef();
   status = React.createRef();
